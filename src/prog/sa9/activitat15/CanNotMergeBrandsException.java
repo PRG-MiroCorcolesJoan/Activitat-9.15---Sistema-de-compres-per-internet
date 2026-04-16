@@ -8,6 +8,13 @@ package prog.sa9.activitat15;
  *
  * @author joan
  */
-public class CanNotMergeBrandsException {
-    
+public class CanNotMergeBrandsException extends RuntimeException {
+
+    public CanNotMergeBrandsException() {
+        super("No es poden mesclar productes de distintes marques en un mateix aparador");
+    }
+
+    public CanNotMergeBrandsException(String message) {
+        super(message);
+    }
 }

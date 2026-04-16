@@ -17,13 +17,11 @@ public class Producte implements Comparable<Producte> {
     private Marca marca;
 
     public Producte(String identificador, double preu, Marca marca) {
-        // Comprovem que l'identificador del producte no siga nul ni buit
+
         assert identificador != null && !identificador.trim().isEmpty() : "L'identificador no pot ser nul ni buit";
 
-        // Comprovem que el preu no siga negatiu
         assert preu >= 0 : "El preu no pot ser negatiu";
 
-        // Comprovem que la marca del producte existisca
         assert marca != null : "La marca no pot ser nul·la";
 
         this.identificador = identificador;
@@ -44,7 +42,7 @@ public class Producte implements Comparable<Producte> {
     }
 
     public void setPreu(double preu) {
-        // Comprovem que no s'actualitze el producte amb un preu negatiu
+
         assert preu >= 0 : "El preu no pot ser negatiu";
 
         this.preu = preu;
@@ -52,7 +50,7 @@ public class Producte implements Comparable<Producte> {
 
     @Override
     public int compareTo(Producte altreProducte) {
-        // Comprovem que el producte a comparar no siga nul
+
         assert altreProducte != null : "No es pot comparar amb null";
 
         return this.identificador.compareToIgnoreCase(altreProducte.identificador);

@@ -8,6 +8,13 @@ package prog.sa9.activitat15;
  *
  * @author joan
  */
-public class NotExistEnougthItemException {
-    
+public class NotExistEnougthItemException extends RuntimeException {
+
+    public NotExistEnougthItemException() {
+        super("No hi ha suficients unitats del producte en l'estoc");
+    }
+
+    public NotExistEnougthItemException(String message) {
+        super(message);
+    }
 }

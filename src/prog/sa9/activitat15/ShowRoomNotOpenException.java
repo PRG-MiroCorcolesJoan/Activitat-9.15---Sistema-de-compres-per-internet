@@ -8,6 +8,13 @@ package prog.sa9.activitat15;
  *
  * @author joan
  */
-public class ShowRoomNotOpenException {
-    
+public class ShowRoomNotOpenException extends Exception {
+
+    public ShowRoomNotOpenException() {
+        super("L'aparador no està obert");
+    }
+
+    public ShowRoomNotOpenException(String message) {
+        super(message);
+    }
 }
