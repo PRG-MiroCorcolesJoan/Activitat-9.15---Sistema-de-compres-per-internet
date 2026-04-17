@@ -5,6 +5,7 @@
 package prog.sa9.activitat15;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -55,7 +56,6 @@ public abstract class Aparador {
                 return true;
             }
         }
-
         return false;
     }
 
@@ -81,6 +81,12 @@ public abstract class Aparador {
         }
 
         return productesDisponibles;
+    }
+
+    public ArrayList<Producte> obtindreProductesOrdenatsAlfabeticment() {
+        ArrayList<Producte> productesOrdenats = obtindreProductesAVenda();
+        Collections.sort(productesOrdenats);
+        return productesOrdenats;
     }
 
     public boolean teProducte(Producte producte) {
@@ -125,6 +131,28 @@ public abstract class Aparador {
         }
 
         return false;
+    }
+
+    public void comprarProducte(Producte producte, int unitats) throws ShowRoomNotOpenException {
+        assert producte != null : "El producte no pot ser null";
+        assert unitats > 0 : "Les unitats a comprar han de ser positives";
+
+        if (!estaObert()) {
+            throw new ShowRoomNotOpenException("L'aparador no està obert");
+        }
+
+        for (StockProducte stockProducte : estoc) {
+            if (stockProducte.getProducte().equals(producte)) {
+                if (stockProducte.getUnitatsDisponibles() < unitats) {
+                    throw new NotExistEnougthItemException("No hi ha suficients unitats del producte " + producte.getIdentificador());
+                }
+
+                stockProducte.decrementarUnitats(unitats);
+                return;
+            }
+        }
+
+        throw new NotExistEnougthItemException("El producte no està disponible en l'estoc");
     }
 
     public abstract boolean estaObert();
